@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pioneiro Odonto - Sistema Unificado</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="app-branding">
+                <img src="assets/logo.jpg" alt="Pioneiro Odonto Logo" class="header-logo">
+                <h1>Pioneiro Odonto</h1>
+            </div>
+            <nav class="nav-tabs">
+                <div class="nav-tab active" data-module="dashboard">Início</div>
+                <div class="nav-tab" data-module="inventory">Inventário</div>
+                <div class="nav-tab" data-module="service-order">O.S.</div>
+                <div class="nav-tab" data-module="purchase-order">Compras</div>
+                <div class="nav-tab" data-module="preventive-maintenance">Manutenção</div>
+                <div class="nav-tab" data-module="withdrawal-order">Retirada</div>
+                <div class="nav-tab" data-module="sales-proposal">Venda</div>
+                <div class="nav-tab" data-module="signature-editor">Assinatura</div>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <div id="dashboard" class="module active">
+                <div class="dashboard">
+                    <h2>Bem-vindo ao Sistema de Gestão</h2>
+                    <p>Selecione um módulo para iniciar ou utilize a navegação superior.</p>
+                    <div class="dashboard-cards">
+                        <div class="card dashboard-card" data-module="inventory"><i
+                                class="fa-solid fa-boxes-stacked"></i>
+                            <h3>Inventário</h3>
+                        </div>
+                        <div class="card dashboard-card" data-module="service-order"><i
+                                class="fa-solid fa-file-signature"></i>
+                            <h3>Ordem de Serviço</h3>
+                        </div>
+                        <div class="card dashboard-card" data-module="purchase-order"><i
+                                class="fa-solid fa-cart-shopping"></i>
+                            <h3>Pedido de Compras</h3>
+                        </div>
+                        <div class="card dashboard-card" data-module="preventive-maintenance"><i
+                                class="fa-solid fa-shield-halved"></i>
+                            <h3>Manutenção Prev.</h3>
+                        </div>
+                        <div class="card dashboard-card" data-module="withdrawal-order"><i
+                                class="fa-solid fa-dolly"></i>
+                            <h3>Retirada de Peças</h3>
+                        </div>
+                        <div class="card dashboard-card" data-module="sales-proposal"><i
+                                class="fa-solid fa-file-invoice-dollar"></i>
+                            <h3>Proposta de Venda</h3>
+                        </div>
+                        <div class="card dashboard-card" data-module="signature-editor"><i
+                                class="fa-solid fa-signature"></i>
+                            <h3>Editor de Assinatura</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="inventory" class="module">
+                <div class="module-header">
+                    <div class="logo-container"><img src="assets/logo.jpg" class="logo-img" alt="Pioneiro Odonto Logo">
+                    </div>
+                    <div class="company-info">
+                        <div class="company-name">PIONEIRO ODONTO</div>
+                        <p class="company-detail">CNPJ: 61.193.795/0001-96</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2><i class="fa-solid fa-boxes-stacked"></i> Inventário de Equipamentos</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label for="clinic-name">Nome do Consultório</label><input type="text"
+                                id="clinic-name"></div>
+                        <div class="form-group"><label for="inventory-date">Data do Inventário</label><input type="date"
+                                id="inventory-date"></div>
+                        <div class="form-group"><label for="responsible">Responsável</label><input type="text"
+                                id="responsible"></div>
+                        <div class="form-group"><label for="location">Localização</label><input type="text"
+                                id="location"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Equipamento</th>
+                                <th>Marca</th>
+                                <th>Nº de Série</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-body"></tbody>
+                    </table>
+                </div>
+                <div class="signature-area">
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Responsável</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Conferente</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                </div>
+                <div class="datetime">
+                    <p>Data de Emissão: <span id="inventory-current-datetime"></span></p>
+                </div>
+                <div class="button-row"><button id="print-inventory-btn" class="btn-secondary"><i
+                            class="fas fa-print"></i> Imprimir</button><button id="save-inventory-btn"
+                        class="btn-primary"><i class="fas fa-save"></i> Salvar</button><button id="clear-inventory-btn"
+                        class="btn-tertiary"><i class="fas fa-broom"></i> Limpar</button></div>
+                <div class="save-status" id="inventory-save-status"></div>
+            </div>
+
+            <div id="service-order" class="module">
+                <div class="module-header">
+                    <div class="logo-container"><img src="assets/logo.jpg" class="logo-img" alt="Pioneiro Odonto Logo">
+                    </div>
+                    <div class="company-info">
+                        <div class="company-name">PIONEIRO ODONTO</div>
+                        <p class="company-detail">CNPJ: 61.193.795/0001-96</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-file-alt"></i> Ordem de Serviço</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label for="os-number">Número da OS</label><input type="text"
+                                id="os-number"></div>
+                        <div class="form-group"><label for="os-date">Data</label><input type="date" id="os-date"></div>
+                        <div class="form-group"><label for="client">Cliente</label><input type="text" id="client"></div>
+                        <div class="form-group"><label for="equipment">Equipamento</label><input type="text"
+                                id="equipment"></div>
+                        <div class="form-group"><label for="serial">Nº de Série</label><input type="text" id="serial">
+                        </div>
+                        <div class="form-group"><label for="technician">Técnico Responsável</label><input type="text"
+                                id="technician"></div>
+                    </div>
+                    <div class="form-group"><label for="reported-issue">Problema Relatado</label><textarea
+                            id="reported-issue" rows="3"></textarea></div>
+                    <div class="form-group"><label for="condition">Condição do Equipamento (ao receber)</label><textarea
+                            id="condition" rows="3"></textarea></div>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-tasks"></i> Serviços Realizados</h2>
+                    <div class="form-group"><label for="services">Descrição dos Serviços Executados</label><textarea
+                            id="services" rows="5"></textarea></div>
+                    <div class="form-group"><label for="observations-os">Observações e Recomendações</label><textarea
+                            id="observations-os" rows="3"></textarea></div>
+                </div>
+                <div class="signature-area">
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Técnico</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Responsável pelo Cliente</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                </div>
+                <div class="datetime">
+                    <p>Data de Conclusão: <span id="os-current-datetime"></span></p>
+                </div>
+                <div class="button-row"><button id="print-os-btn" class="btn-secondary"><i class="fas fa-print"></i>
+                        Imprimir</button><button id="save-os-btn" class="btn-primary"><i class="fas fa-save"></i>
+                        Salvar</button><button id="clear-os-btn" class="btn-tertiary"><i class="fas fa-broom"></i>
+                        Limpar</button></div>
+                <div class="save-status" id="os-save-status"></div>
+            </div>
+
+            <div id="purchase-order" class="module">
+                <div class="module-header">
+                    <div class="logo-container"><img src="assets/logo.jpg" class="logo-img" alt="Pioneiro Odonto Logo">
+                    </div>
+                    <div class="company-info">
+                        <div class="company-name">PIONEIRO ODONTO</div>
+                        <p class="company-detail">CNPJ: 61.193.795/0001-96</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-shopping-cart"></i> Pedido Oficial de Compras</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label for="chain">Equipamento</label><input type="text" id="chain">
+                        </div>
+                        <div class="form-group"><label for="clinic">Consultório</label><input type="text" id="clinic">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th width="50%">Nome do Produto</th>
+                                <th width="20%">Quantidade</th>
+                                <th width="30%">Imagem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-body"></tbody>
+                    </table>
+                </div>
+                <div class="signature-area">
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Ass. Responsável Técnico</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Ass. Responsável Empresa</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                </div>
+                <div class="datetime">
+                    <p>Data do Pedido: <span id="po-current-datetime"></span></p>
+                </div>
+                <div class="button-row"><button id="print-po-btn" class="btn-secondary"><i class="fas fa-print"></i>
+                        Imprimir</button><button id="save-po-btn" class="btn-primary"><i class="fas fa-save"></i>
+                        Salvar</button><button id="clear-po-btn" class="btn-tertiary"><i class="fas fa-broom"></i>
+                        Limpar</button></div>
+                <div class="save-status" id="po-save-status"></div>
+            </div>
+
+            <div id="preventive-maintenance" class="module">
+                <div class="module-header">
+                    <div class="logo-container"><img src="assets/logo.jpg" class="logo-img" alt="Pioneiro Odonto Logo">
+                    </div>
+                    <div class="company-info">
+                        <div class="company-name">PIONEIRO ODONTO</div>
+                        <p class="company-detail">CNPJ: 61.193.795/0001-96</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-tools"></i> Ordem de Manutenção Preventiva</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label for="clinic-number">Número do Consultório</label><input
+                                type="text" id="clinic-number"></div>
+                        <div class="form-group"><label for="maintenance-date">Data da Manutenção</label><input
+                                type="date" id="maintenance-date"></div>
+                        <div class="form-group"><label for="pm-technician">Técnico Responsável</label><input type="text"
+                                id="pm-technician"></div>
+                        <div class="form-group"><label for="week-day">Dia da Semana</label><select id="week-day">
+                                <option value="" disabled selected>Selecione o dia</option>
+                                <option value="Segunda-feira">Segunda-feira</option>
+                                <option value="Terça-feira">Terça-feira</option>
+                                <option value="Quarta-feira">Quarta-feira</option>
+                                <option value="Quinta-feira">Quinta-feira</option>
+                                <option value="Sexta-feira">Sexta-feira</option>
+                            </select></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Equipamento</th>
+                                <th>Problemas Encontrados</th>
+                                <th>Solicitações de Troca/Reparo</th>
+                                <th>Serviços Realizados</th>
+                            </tr>
+                        </thead>
+                        <tbody id="maintenance-body"></tbody>
+                    </table>
+                </div>
+                <div class="signature-area">
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Técnico</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Responsável</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                </div>
+                <div class="datetime">
+                    <p>Data da Manutenção: <span id="pm-current-datetime"></span></p>
+                </div>
+                <div class="button-row"><button id="print-pm-btn" class="btn-secondary"><i class="fas fa-print"></i>
+                        Imprimir</button><button id="save-pm-btn" class="btn-primary"><i class="fas fa-save"></i>
+                        Salvar</button><button id="clear-pm-btn" class="btn-tertiary"><i class="fas fa-broom"></i>
+                        Limpar</button></div>
+                <div class="save-status" id="pm-save-status"></div>
+            </div>
+
+            <div id="withdrawal-order" class="module">
+                <div class="module-header">
+                    <div class="logo-container"><img src="assets/logo.jpg" class="logo-img" alt="Pioneiro Odonto Logo">
+                    </div>
+                    <div class="company-info">
+                        <div class="company-name">PIONEIRO ODONTO</div>
+                        <p class="company-detail">CNPJ: 61.193.795/0001-96</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-box-open"></i> Ordem de Retirada de Peças/Equipamentos</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label for="wo-company-name">Nome da Empresa Cliente</label><input
+                                type="text" id="wo-company-name"></div>
+                        <div class="form-group"><label for="withdrawal-number">Número da Ordem</label><input type="text"
+                                id="withdrawal-number"></div>
+                        <div class="form-group"><label for="withdrawal-date">Data da Retirada</label><input type="date"
+                                id="withdrawal-date"></div>
+                        <div class="form-group"><label for="wo-technician">Técnico Responsável</label><input type="text"
+                                id="wo-technician"></div>
+                        <div class="form-group"><label for="clinic-location">Local de Origem</label><input type="text"
+                                id="clinic-location"></div>
+                        <div class="form-group"><label for="estimated-return">Previsão de Retorno</label><input
+                                type="date" id="estimated-return"></div>
+                        <div class="form-group"><label for="urgency">Nível de Urgência</label><select id="urgency">
+                                <option value="normal">Normal</option>
+                                <option value="urgent">Urgente</option>
+                                <option value="critical">Crítico</option>
+                            </select></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><button id="add-wo-equipment-btn" class="btn-secondary"><i
+                                class="fas fa-plus"></i> Adicionar Equipamento</button></div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Equipamento/Peça</th>
+                                <th>Marca</th>
+                                <th>Nº de Série</th>
+                                <th>Problema Relatado</th>
+                                <th>Acessórios Retirados</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="equipment-body"></tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="form-group"><label for="observations-wo">Observações Adicionais</label><textarea
+                            id="observations-wo" rows="4"></textarea></div>
+                </div>
+                <div class="signature-area">
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Técnico</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Responsável Cliente</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Responsável Pioneiro</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                </div>
+                <div class="datetime">
+                    <p>Data de Emissão: <span id="wo-current-datetime"></span></p>
+                </div>
+                <div class="button-row"><button id="print-wo-btn" class="btn-secondary"><i class="fas fa-print"></i>
+                        Imprimir</button><button id="save-wo-btn" class="btn-primary"><i class="fas fa-save"></i>
+                        Salvar</button><button id="clear-wo-btn" class="btn-tertiary"><i class="fas fa-broom"></i>
+                        Limpar</button></div>
+                <div class="save-status" id="wo-save-status"></div>
+            </div>
+
+            <div id="sales-proposal" class="module">
+                <div class="module-header">
+                    <div class="logo-container"><img src="assets/logo.jpg" class="logo-img" alt="Pioneiro Odonto Logo">
+                    </div>
+                    <div class="company-info">
+                        <div class="company-name">PIONEIRO ODONTO</div>
+                        <p class="company-detail">CNPJ: 61.193.795/0001-96</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-file-contract"></i> Proposta Comercial</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label for="sale-number">Número da Proposta</label><input type="text"
+                                id="sale-number"></div>
+                        <div class="form-group"><label for="sale-date">Data da Proposta</label><input type="date"
+                                id="sale-date"></div>
+                        <div class="form-group"><label for="valid-date">Válida até</label><input type="date"
+                                id="valid-date"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-user"></i> Dados do Cliente</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label for="client-name">Nome do Cliente</label><input type="text"
+                                id="client-name"></div>
+                        <div class="form-group"><label for="client-document">CPF/CNPJ</label><input type="text"
+                                id="client-document"></div>
+                        <div class="form-group"><label for="client-email">E-mail</label><input type="email"
+                                id="client-email"></div>
+                        <div class="form-group"><label for="client-phone">Telefone</label><input type="tel"
+                                id="client-phone"></div>
+                    </div>
+                    <div class="form-group" style="margin-top: 24px;"><label for="client-full-address">Endereço
+                            Completo</label><input type="text" id="client-full-address"></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><button id="add-sp-equipment-btn" class="btn-secondary"><i
+                                class="fas fa-plus"></i> Adicionar Item</button></div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Foto</th>
+                                <th>Equipamento</th>
+                                <th>Marca/Modelo</th>
+                                <th>Obs.</th>
+                                <th>Qtd</th>
+                                <th>Preço Unit.</th>
+                                <th>Total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sp-equipment-body"></tbody>
+                    </table>
+                </div>
+                <div class="sales-proposal-bottom">
+                    <div class="payment-conditions card">
+                        <h2><i class="fas fa-money-bill-wave"></i> Condições e Vendedor</h2>
+                        <div class="form-grid">
+                            <div class="form-group"><label for="payment-method">Forma de Pagamento</label><select
+                                    id="payment-method">
+                                    <option value="">Selecione...</option>
+                                    <option value="cash">Dinheiro</option>
+                                    <option value="pix">PIX</option>
+                                    <option value="credit">Cartão de Crédito</option>
+                                    <option value="debit">Cartão de Débito</option>
+                                    <option value="transfer">Transferência Bancária</option>
+                                    <option value="check">Cheque</option>
+                                    <option value="financing">Financiamento</option>
+                                </select></div>
+                            <div class="form-group"><label for="salesperson">Vendedor</label><input type="text"
+                                    id="salesperson"></div>
+                        </div>
+                        <div class="form-group"><label for="payment-terms">Detalhes (parcelamento,
+                                etc.)</label><textarea id="payment-terms" rows="3"></textarea></div>
+                    </div>
+                    <div class="totals-area">
+                        <div class="totals-box">
+                            <div class="total-row"><span>Subtotal:</span><span id="subtotal">R$ 0,00</span></div>
+                            <div class="total-row"><span>Desconto (R$):</span><input type="number" id="discount-input"
+                                    value="0.00"></div>
+                            <div class="total-row"><span>Frete/Instalação:</span><input type="number"
+                                    id="shipping-input" value="0.00"></div>
+                            <div class="total-row total-final"><span>Total:</span><span id="total">R$ 0,00</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="signature-area">
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Representante</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-title">Assinatura do Cliente</p>
+                        <p class="signature-caption">(Nome Completo)</p>
+                    </div>
+                </div>
+                <div class="datetime">
+                    <p>Data da Proposta: <span id="sp-current-datetime"></span></p>
+                </div>
+                <div class="button-row"><button id="print-sp-btn" class="btn-secondary"><i class="fas fa-print"></i>
+                        Imprimir</button><button id="save-sp-btn" class="btn-primary"><i class="fas fa-save"></i>
+                        Salvar</button><button id="clear-sp-btn" class="btn-tertiary"><i class="fas fa-broom"></i>
+                        Limpar</button></div>
+                <div class="save-status" id="sp-save-status"></div>
+            </div>
+
+            <div id="signature-editor" class="module">
+                <div class="card">
+                    <div class="signature-editor-container">
+                        <div class="signature-editor-header">
+                            <h2><i class="fas fa-signature"></i> Editor de Assinatura Digital</h2>
+                            <p>Carregue um PDF, adicione sua assinatura e salve o documento.</p>
+                        </div>
+                        <div class="signature-editor-main">
+                            <div class="signature-sidebar">
+                                <div class="card">
+                                    <div class="signature-tools">
+                                        <h3><i class="fas fa-file-pdf"></i> Documento</h3><input type="file"
+                                            id="signature-pdf-input" style="display:none;" accept=".pdf"><button
+                                            id="signature-upload-pdf-btn" class="btn-secondary"
+                                            style="width:100%;">Carregar PDF</button>
+                                    </div>
+                                    <div class="signature-tools">
+                                        <h3><i class="fas fa-pen-fancy"></i> Assinatura</h3><input type="file"
+                                            id="signature-image-input" style="display:none;"
+                                            accept=".png,.jpg,.jpeg"><button id="signature-upload-image-btn"
+                                            class="btn-secondary" style="width:100%;">Carregar Imagem</button><button
+                                            id="signature-place-btn" class="btn-secondary"
+                                            style="width:100%; margin-top: 8px;" disabled>Posicionar Assinatura</button>
+                                        <div class="signature-size-controls"
+                                            style="margin-top: 8px; display: flex; gap: 8px;"><button
+                                                class="btn-secondary signature-size-btn" data-size="small"
+                                                style="flex:1;">P</button><button
+                                                class="btn-secondary signature-size-btn active" data-size="medium"
+                                                style="flex:1;">M</button><button
+                                                class="btn-secondary signature-size-btn" data-size="large"
+                                                style="flex:1;">G</button></div>
+                                    </div>
+                                    <div class="signature-tools">
+                                        <h3><i class="fas fa-cogs"></i> Ações</h3><button id="signature-save-pdf-btn"
+                                            class="btn-primary" style="width:100%;" disabled>Salvar PDF</button><button
+                                            id="signature-download-pdf-btn" class="btn-primary"
+                                            style="width:100%; margin-top: 8px;" disabled><i
+                                                class="fas fa-download"></i> Download</button><button
+                                            id="signature-print-pdf-btn" class="btn-secondary"
+                                            style="width:100%; margin-top: 8px;" disabled>Imprimir</button><button
+                                            id="signature-reset-btn" class="btn-tertiary"
+                                            style="width:100%; margin-top: 8px;">Limpar Tudo</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="signature-editor-area">
+                                <div class="card">
+                                    <div class="signature-toolbar"
+                                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                                        <div class="signature-page-controls"
+                                            style="display: flex; align-items: center; gap: 10px;">
+                                            <button class="btn-secondary" id="signature-prev-page" disabled><i
+                                                    class="fas fa-chevron-left"></i></button>
+                                            <span class="signature-page-info">Página <span
+                                                    id="signature-page-num">0</span> de <span
+                                                    id="signature-page-count">0</span></span>
+                                            <button class="btn-secondary" id="signature-next-page" disabled><i
+                                                    class="fas fa-chevron-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="signature-document-view" style="position: relative;">
+                                        <div class="signature-loading" id="signature-loading"
+                                            style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.8); align-items:center; justify-content:center; flex-direction:column; z-index:10;">
+                                            <div class="signature-spinner"
+                                                style="border: 4px solid #f3f3f3; border-top: 4px solid var(--accent-color); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite;">
+                                            </div>
+                                            <p>Processando...</p>
+                                        </div>
+                                        <div id="signature-pdf-container"
+                                            style="background-color: #f0f0f0; border: 1px solid var(--border-color); padding: 24px; display: flex; justify-content: center; min-height: 500px; border-radius: var(--radius);">
+                                            <div id="signature-no-document"
+                                                style="text-align: center; align-self: center;">
+                                                <p>Carregue um documento PDF para começar.</p><button
+                                                    class="btn-primary" id="signature-upload-trigger">Carregar
+                                                    PDF</button>
+                                            </div>
+                                            <div id="signature-pdf-viewer" style="display: none;"><canvas
+                                                    id="signature-pdf-canvas"></canvas>
+                                                <div id="signature-layer" class="signature-layer"></div>
+                                            </div>
+                                        </div>
+                                        <div class="signature-preview-container"
+                                            style="text-align:center; margin-top:16px;">
+                                            <p style="font-weight:600;">Pré-visualização da assinatura:</p>
+                                            <img id="signature-editor-preview" src="" alt="Sua assinatura"
+                                                style="max-width:200px; border:1px dashed #ccc; padding:5px; min-height:50px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
